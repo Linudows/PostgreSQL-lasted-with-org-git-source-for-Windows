@@ -10,6 +10,7 @@
  *
  *-------------------------------------------------------------------------
  */
+#undef BUILDING_DLL
 
 #include "postgres.h"
 
@@ -34,13 +35,19 @@
 #include <llvm-c/Transforms/Utils.h>
 #endif
 
-#include "jit/llvmjit.h"
-#include "jit/llvmjit_emit.h"
 #include "miscadmin.h"
 #include "portability/instr_time.h"
 #include "storage/ipc.h"
 #include "utils/memutils.h"
 #include "utils/resowner_private.h"
+#include "jit/jit.h"
+
+#undef PGDLLIMPORT
+#define PGDLLIMPORT __declspec (dllexport)
+
+#include "jit/llvmjit.h"
+#include "jit/llvmjit_emit.h"
+
 
 /* Handle of a module emitted via ORC JIT */
 typedef struct LLVMJitHandle
@@ -1046,7 +1053,7 @@ llvm_split_symbol_name(const char *name, char **modname, char **funcname)
 		 * Symbol names cannot contain a ., therefore we can split based on
 		 * first and last occurrence of one.
 		 */
-		*funcname = rindex(name, '.');
+		*funcname = strrchr(name, '.');
 		(*funcname)++;			/* jump over . */
 
 		*modname = pnstrdup(name + strlen("pgextern."),

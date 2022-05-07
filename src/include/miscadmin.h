@@ -187,7 +187,7 @@ extern int	MyPMChildSlot;
 
 extern char OutputFileName[];
 extern PGDLLIMPORT char my_exec_path[];
-extern char pkglib_path[];
+extern PGDLLIMPORT char pkglib_path[];
 
 #ifdef EXEC_BACKEND
 extern char postgres_exec_path[];
@@ -338,7 +338,7 @@ typedef enum BackendType
 	B_LOGGER,
 } BackendType;
 
-extern BackendType MyBackendType;
+extern PGDLLIMPORT BackendType MyBackendType;
 
 extern const char *GetBackendTypeDesc(BackendType backendType);
 
@@ -401,7 +401,7 @@ typedef enum ProcessingMode
 	NormalProcessing			/* normal processing */
 } ProcessingMode;
 
-extern ProcessingMode Mode;
+extern PGDLLIMPORT ProcessingMode Mode;
 
 #define IsBootstrapProcessingMode() (Mode == BootstrapProcessing)
 #define IsInitProcessingMode()		(Mode == InitProcessing)

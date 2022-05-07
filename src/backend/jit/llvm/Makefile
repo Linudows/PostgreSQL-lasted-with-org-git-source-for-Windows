@@ -32,7 +32,7 @@ endif
 CFLAGS += $(LLVM_CFLAGS)
 CXXFLAGS += $(LLVM_CXXFLAGS)
 override CPPFLAGS := $(LLVM_CPPFLAGS) $(CPPFLAGS)
-SHLIB_LINK += $(LLVM_LIBS)
+SHLIB_LINK += -lstdc++ $(LLVM_LIBS)
 
 # Because this module includes C++ files, we need to use a C++
 # compiler for linking. Makefile.shlib uses $(COMPILER) to build
@@ -52,7 +52,8 @@ OBJS += \
 # Code generation
 OBJS += \
 	llvmjit_deform.o \
-	llvmjit_expr.o
+	llvmjit_expr.o \
+	../../../../src/backend/libpostgres.a
 
 all: all-shared-lib llvmjit_types.bc
 

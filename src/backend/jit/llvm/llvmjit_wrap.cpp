@@ -14,6 +14,7 @@
 extern "C"
 {
 #include "postgres.h"
+#undef bind
 }
 
 #include <llvm-c/Core.h>

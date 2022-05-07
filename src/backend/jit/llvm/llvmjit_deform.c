@@ -22,10 +22,12 @@
 
 #include "access/htup_details.h"
 #include "access/tupdesc_details.h"
-#include "executor/tuptable.h"
 #include "jit/llvmjit.h"
 #include "jit/llvmjit_emit.h"
 
+#undef PGDLLIMPORT
+#define PGDLLIMPORT __declspec (dllimport)
+#include "executor/tuptable.h"
 
 /*
  * Create a function that deforms a tuple of type desc up to natts columns.

@@ -778,7 +778,7 @@ CreateWaitEventSet(MemoryContext context, int nevents)
 	 * pending signals are serviced.
 	 */
 	set->handles[0] = pgwin32_signal_event;
-	StaticAssertStmt(WSA_INVALID_EVENT == NULL, "");
+	//StaticAssertStmt(WSA_INVALID_EVENT == NULL, "");
 #endif
 
 	return set;

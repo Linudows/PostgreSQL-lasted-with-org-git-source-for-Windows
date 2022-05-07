@@ -26,7 +26,8 @@ OBJS = \
 	pl_funcs.o \
 	pl_gram.o \
 	pl_handler.o \
-	pl_scanner.o
+	pl_scanner.o \
+	../../../../src/backend/libpostgres.a
 
 DATA = plpgsql.control plpgsql--1.0.sql
 

@@ -14,7 +14,8 @@ include $(top_builddir)/src/Makefile.global
 
 OBJS = \
 	$(WIN32RES) \
-	pgoutput.o
+	pgoutput.o \
+	../../../../src/backend/libpostgres.a
 PGFILEDESC = "pgoutput - standard logical replication output plugin"
 NAME = pgoutput
 
